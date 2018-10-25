@@ -46,7 +46,7 @@ class AudioInfoController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
-    protected $allowAnonymous = ['index', 'do-something', 'do-id3'];
+    protected $allowAnonymous = ['index', 'do-something'];
 
     // Public Methods
     // =========================================================================
