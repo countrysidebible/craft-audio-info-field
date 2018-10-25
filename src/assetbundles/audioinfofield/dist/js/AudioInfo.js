@@ -38,7 +38,7 @@
                 var prefix = _this.options.prefix,
                     fieldTwuMediaCode = $('#fields-twuMediaCode-field').find('input'),
                     fieldFilesize = $('#fields-filesize-field').find('input'),
-                    fieldAudioDuration = $('#fields-audioDuration-field').find('input');
+                    fieldDuration = $('#fields-duration-field').find('input');
 
                 var programs = _this.options.s3 + 'programs/';
 
@@ -46,14 +46,16 @@
 
                 function addAudio(audioURL) {
                     var audio = document.getElementById(prefix + 'audioFile');
+                    console.log(audio);
                     audio.src = audioURL;
                     audio.load();
 
                     audio.onloadeddata = function() {
+                        alert('loaded');
                         var date = new Date(null);
                         date.setSeconds(audio.duration);
                         var result = date.toISOString().substr(11, 8).replace(/^0+/, '').replace(/^:+/, '');
-                        fieldAudioDuration.val(result);
+                        fieldDuration.val(result);
                     };
                 }
 
@@ -92,31 +94,8 @@
                             alert('There is no audio file.');
                         }
                     }
-
                     xhr.send();
                 }
-
-                function doID3() {
-                    var data = {
-                        action: 'craft-audio-info-field/audio-info/do-id3',
-                        siteId: _this.options.id
-                    };
-                    // include csrf token
-                    var tokenName = Craft.csrfTokenName;
-                    data[tokenName] = Craft.csrfTokenValue;
-                    $.ajax({
-                        type: "post",
-                        url: '',
-                        data: data,
-                        success: function(response) {
-                            alert(response);
-                        },
-                        error: function(XMLHttpRequest, textStatus) {
-                            console.log("Status: " + textStatus);
-                        }
-                    });
-                }
-
 
                 $("#" + prefix + "getAudioDetails").click(function(e) {
                     e.preventDefault();
@@ -124,14 +103,6 @@
 
                     alert(audioURL);
                 });
-
-                $("#" + prefix + "doID3").click(function(e) {
-                    e.preventDefault();
-                    alert('clicked');
-                    doID3();
-
-                });
-
                 /* -- _this.options gives us access to the $jsonVars that our FieldType passed down to us */
 
             });
