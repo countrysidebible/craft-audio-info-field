@@ -46,12 +46,10 @@
 
                 function addAudio(audioURL) {
                     var audio = document.getElementById(prefix + 'audioFile');
-                    console.log(audio);
                     audio.src = audioURL;
                     audio.load();
 
                     audio.onloadeddata = function() {
-                        alert('loaded');
                         var date = new Date(null);
                         date.setSeconds(audio.duration);
                         var result = date.toISOString().substr(11, 8).replace(/^0+/, '').replace(/^:+/, '');
@@ -100,8 +98,6 @@
                 $("#" + prefix + "getAudioDetails").click(function(e) {
                     e.preventDefault();
                     xhr(audioURL);
-
-                    alert(audioURL);
                 });
                 /* -- _this.options gives us access to the $jsonVars that our FieldType passed down to us */
 
