@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2018 Andrew Hale
  */
 
-namespace cbcsouthlake\craftaudioinfofield;
+namespace countrysidebible\craftaudioinfofield;
 
-use cbcsouthlake\craftaudioinfofield\fields\AudioInfo as AudioInfoField;
+use countrysidebible\craftaudioinfofield\fields\AudioInfo as AudioInfoField;
 
 use Craft;
 use craft\base\Plugin;

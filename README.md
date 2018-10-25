@@ -18,7 +18,7 @@ To install the plugin, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require cbcsouthlake/craft-audio-info-field
+        composer require countrysidebible/craft-audio-info-field
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Craft Audio Info Field.
 

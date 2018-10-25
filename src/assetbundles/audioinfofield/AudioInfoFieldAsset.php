@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2018 Andrew Hale
  */
 
-namespace cbcsouthlake\craftaudioinfofield\assetbundles\audioinfofield;
+namespace countrysidebible\craftaudioinfofield\assetbundles\audioinfofield;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -43,7 +43,7 @@ class AudioInfoFieldAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@cbcsouthlake/craftaudioinfofield/assetbundles/audioinfofield/dist";
+        $this->sourcePath = "@countrysidebible/craftaudioinfofield/assetbundles/audioinfofield/dist";
 
         // define the dependencies
         $this->depends = [

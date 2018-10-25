@@ -1,5 +1,5 @@
 {
-    "name": "cbcsouthlake/craft-audio-info-field",
+    "name": "countrysidebible/craft-audio-info-field",
     "description": "Get file details, and write file tags.",
     "type": "craft-plugin",
     "keywords": [
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-          "cbcsouthlake\\craftaudioinfofield\\": "src/"
+          "countrysidebible\\craftaudioinfofield\\": "src/"
         }
     },
     "extra": {
@@ -30,7 +30,7 @@
         "handle": "craft-audio-info-field",
         "hasCpSettings": false,
         "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/cbcsouthlake/craft-audio-info-field/master/CHANGELOG.md",
-        "class": "cbcsouthlake\\craftaudioinfofield\\CraftAudioInfoField"
+        "changelogUrl": "https://raw.githubusercontent.com/countrysidebible/craft-audio-info-field/master/CHANGELOG.md",
+        "class": "countrysidebible\\craftaudioinfofield\\CraftAudioInfoField"
     }
 }

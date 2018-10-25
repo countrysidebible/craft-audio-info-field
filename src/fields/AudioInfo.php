@@ -8,10 +8,10 @@
  * @copyright Copyright (c) 2018 Andrew Hale
  */
 
-namespace cbcsouthlake\craftaudioinfofield\fields;
+namespace countrysidebible\craftaudioinfofield\fields;
 
-use cbcsouthlake\craftaudioinfofield\CraftAudioInfoField;
-use cbcsouthlake\craftaudioinfofield\assetbundles\audioinfofield\AudioInfoFieldAsset;
+use countrysidebible\craftaudioinfofield\CraftAudioInfoField;
+use countrysidebible\craftaudioinfofield\assetbundles\audioinfofield\AudioInfoFieldAsset;
 
 use Craft;
 use craft\base\ElementInterface;

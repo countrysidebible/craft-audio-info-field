@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2018 Andrew Hale
  */
 
-namespace cbcsouthlake\craftaudioinfofield\controllers;
+namespace countrysidebible\craftaudioinfofield\controllers;
 
-use cbcsouthlake\craftaudioinfofield\CraftAudioInfoField;
+use countrysidebible\craftaudioinfofield\CraftAudioInfoField;
 
 use Craft;
 use craft\web\Controller;
