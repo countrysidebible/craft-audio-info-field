@@ -1,0 +1,20 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Craft Audio Info Field plugin for Craft CMS 3.x
+ *
+ * AudioInfo Field Input
+ *
+ * @author    Andrew Hale
+ * @copyright Copyright (c) 2018 Andrew Hale
+ * @link      thisanimus.com
+ * @package   CraftAudioInfoField
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+<a id="getAudioDetails" class="btn primary" href="#">Get Audio Details</a>
+<audio id="audioFile" preload="metadata" src="#"></audio>
+<a id="doID3" class="btn primary" href="#">Do ID3</a>

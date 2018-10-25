@@ -1,0 +1,40 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Craft Audio Info Field plugin for Craft CMS
+ *
+ * AudioInfo Field Settings
+ *
+ * @author    Andrew Hale
+ * @copyright Copyright (c) 2018 Andrew Hale
+ * @link      thisanimus.com
+ * @package   CraftAudioInfoField
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("cbcsouthlake\\craftaudioinfofield\\assetbundles\\audioinfofield\\AudioInfoFieldAsset") %}
+
+{{ forms.textField({
+    label: 'Media Base Url',
+    instructions: 'URL of the directory that holds all th.mp3 files you want to access.',
+    id: 'mediaBaseUrl',
+    name: 'mediaBaseUrl',
+    value: field['mediaBaseUrl']})
+}}
+{{ forms.textField({
+    label: 'AWS ID',
+    instructions: 'Enter your AWS ID',
+    id: 'awsId',
+    name: 'awsId',
+    value: field['awsId']})
+}}
+{{ forms.textField({
+    label: 'AWS Secret Key',
+    instructions: 'Enter your AWS Secret Key',
+    id: 'awsSecretKey',
+    name: 'awsSecretKey',
+    value: field['awsSecretKey']})
+}}

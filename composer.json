@@ -1,0 +1,36 @@
+{
+    "name": "cbcsouthlake/craft-audio-info-field",
+    "description": "Get file details, and write file tags.",
+    "type": "craft-plugin",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "craft audio info field"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Hale",
+            "homepage": "http://thisanimus.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1",
+        "james-heinrich/getid3": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "cbcsouthlake\\craftaudioinfofield\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Craft Audio Info Field",
+        "handle": "craft-audio-info-field",
+        "hasCpSettings": false,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/cbcsouthlake/craft-audio-info-field/master/CHANGELOG.md",
+        "class": "cbcsouthlake\\craftaudioinfofield\\CraftAudioInfoField"
+    }
+}
