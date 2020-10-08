@@ -10,110 +10,101 @@
  * @since     1.0.0CraftAudioInfoFieldAudioInfo
  */
 
- ;(function ( $, window, document, undefined ) {
+(function($, window, document, undefined) {
+	var pluginName = 'CraftAudioInfoFieldAudioInfo',
+		defaults = {};
 
-    var pluginName = "CraftAudioInfoFieldAudioInfo",
-        defaults = {
-        };
+	// Plugin constructor
+	function Plugin(element, options) {
+		this.element = element;
 
-    // Plugin constructor
-    function Plugin( element, options ) {
-        this.element = element;
+		this.options = $.extend({}, defaults, options);
 
-        this.options = $.extend( {}, defaults, options) ;
+		this._defaults = defaults;
+		this._name = pluginName;
 
-        this._defaults = defaults;
-        this._name = pluginName;
+		this.init();
+	}
 
-        this.init();
-    }
+	Plugin.prototype = {
+		init: function(id) {
+			var _this = this;
 
-    Plugin.prototype = {
+			$(function() {
+				var prefix = 'fields-',
+					fieldTwuMediaCode = $('#fields-twuMediaCode-field').find('input'),
+					fieldFilesize = $('#fields-filesize-field').find('input'),
+					fieldDuration = $('#fields-duration-field').find('input');
 
-        init: function(id) {
-            var _this = this;
+				var programs = _this.options.s3 + 'programs/';
 
-            $(function () {
+				var audioURL = programs + fieldTwuMediaCode.val() + '.mp3';
 
-                var prefix = _this.options.prefix,
-                    fieldTwuMediaCode = $('#fields-twuMediaCode-field').find('input'),
-                    fieldFilesize = $('#fields-filesize-field').find('input'),
-                    fieldDuration = $('#fields-duration-field').find('input');
+				function addAudio(audioURL) {
+					var audio = document.getElementById(prefix + 'audioFile');
+					audio.src = audioURL;
+					audio.load();
 
-                var programs = _this.options.s3 + 'programs/';
+					audio.onloadeddata = function() {
+						var date = new Date(null);
+						date.setSeconds(audio.duration);
+						var result = date.toISOString().substr(11, 8).replace(/^0+/, '').replace(/^:+/, '');
+						fieldDuration.val(result);
+					};
+				}
 
-                var audioURL = programs + fieldTwuMediaCode.val() + '.mp3';
+				function filesize(size) {
+					fieldFilesize.val(size);
+				}
 
-                function addAudio(audioURL) {
-                    var audio = document.getElementById(prefix + 'audioFile');
-                    audio.src = audioURL;
-                    audio.load();
+				function xhr(url) {
+					var xhr = new XMLHttpRequest();
+					xhr.open('GET', url);
+					xhr.responseType = 'blob';
 
-                    audio.onloadeddata = function() {
-                        var date = new Date(null);
-                        date.setSeconds(audio.duration);
-                        var result = date.toISOString().substr(11, 8).replace(/^0+/, '').replace(/^:+/, '');
-                        fieldDuration.val(result);
-                    };
-                }
+					function analyze_data(blob) {
+						var myReader = new FileReader();
+						myReader.readAsArrayBuffer(blob);
 
-                function filesize(size) {
-                    fieldFilesize.val(size);
-                }
+						myReader.addEventListener('loadend', function(e) {
+							var buffer = e.srcElement.result;
+						});
 
-                function xhr(url) {
+						if (blob.size > 0) {
+							filesize(blob.size);
+						} else {
+							alert('There is no audio file.');
+						}
+					}
 
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("GET", url);
-                    xhr.responseType = "blob";
+					xhr.onload = function() {
+						analyze_data(xhr.response);
 
-                    function analyze_data(blob) {
-                        var myReader = new FileReader();
-                        myReader.readAsArrayBuffer(blob)
+						if (xhr.status == 200) {
+							addAudio(xhr.responseURL);
+						} else {
+							alert('There is no audio file.');
+						}
+					};
+					xhr.send();
+				}
 
-                        myReader.addEventListener("loadend", function(e) {
-                            var buffer = e.srcElement.result;
-                        });
+				$('#' + prefix + 'getAudioDetails').click(function(e) {
+					e.preventDefault();
+					xhr(audioURL);
+				});
+				/* -- _this.options gives us access to the $jsonVars that our FieldType passed down to us */
+			});
+		}
+	};
 
-                        if (blob.size > 0) {
-                            filesize(blob.size);
-                        } else {
-                            alert('There is no audio file.');
-                        }
-
-                    }
-
-                    xhr.onload = function() {
-                        analyze_data(xhr.response);
-
-                        if (xhr.status == 200) {
-                            addAudio(xhr.responseURL);
-                        } else {
-                            alert('There is no audio file.');
-                        }
-                    }
-                    xhr.send();
-                }
-
-                $("#" + prefix + "getAudioDetails").click(function(e) {
-                    e.preventDefault();
-                    xhr(audioURL);
-                });
-                /* -- _this.options gives us access to the $jsonVars that our FieldType passed down to us */
-
-            });
-        }
-    };
-
-    // A really lightweight plugin wrapper around the constructor,
-    // preventing against multiple instantiations
-    $.fn[pluginName] = function ( options ) {
-        return this.each(function () {
-            if (!$.data(this, "plugin_" + pluginName)) {
-                $.data(this, "plugin_" + pluginName,
-                new Plugin( this, options ));
-            }
-        });
-    };
-
-})( jQuery, window, document );
+	// A really lightweight plugin wrapper around the constructor,
+	// preventing against multiple instantiations
+	$.fn[pluginName] = function(options) {
+		return this.each(function() {
+			if (!$.data(this, 'plugin_' + pluginName)) {
+				$.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+			}
+		});
+	};
+})(jQuery, window, document);
